@@ -4,6 +4,7 @@
 
 .quantity-results {
     margin-left: 10px;
+    transition: all .5s;
 }
 
 .results {

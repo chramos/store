@@ -3,6 +3,7 @@ import { Breadcrumb, Icon, Dropdown, Button, Divider, Menu, Drawer } from 'antd'
 import { Link } from 'react-router-dom';
 
 import Filters from './filters/Filters';
+import QueryResults from '../../QueryResults';
 
 const OrderMenu = (
     <Menu>
@@ -66,8 +67,11 @@ class ListingHeader extends Component {
                     <Breadcrumb.Item><Link to="/"><Icon type="home" /></Link></Breadcrumb.Item>
                     {this.getBreadcrumbItems()}
                 </Breadcrumb>
-                <span className="quantity-results">(1 - 24 de 1889 resultados)</span>
-                 <Divider className="mobile" style={{ margin: '12px 0' }}/>
+
+                <QueryResults data={this.props.data} />
+
+                <Divider className="mobile" style={{ margin: '12px 0' }}/>
+
                 <div className="listing-actions">
                     <Button icon="filter" className="mobile btn-clean" onClick={this.handleDrawer} shape="circle"></Button>
                     <Drawer title="Filtros"
