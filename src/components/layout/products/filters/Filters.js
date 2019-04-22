@@ -4,6 +4,7 @@ import './Filters.css';
 
 import Price from './Price';
 import Category from './Category';
+import Size from './Size';
 
 class Filters extends Component {
     render() {
@@ -11,6 +12,8 @@ class Filters extends Component {
             <div>
                 <Price />
                 <Category />
+                <Size />
+                
             </div>
         );
     }
