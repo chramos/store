@@ -63,7 +63,7 @@ class Products extends Component {
             <div className="page">
                 <div className="container">
                     <div className="products">
-                        <ListingHeader />
+                        <ListingHeader location={this.props.location} />
                     </div>
                     <div className="content">
                         <Row gutter={12} justify="center">

@@ -14,12 +14,13 @@ class App extends Component {
 			<div>
 				<BrowserRouter>
 					<Navbar />
+
 					<Route render={({location}) => (
 						<TransitionGroup>
 							<CSSTransition timeout={750} classNames="fade" key={location.key}>
 								<Switch location={location}>
 									{routes.map((route, i) => (
-										<Route path={route.path} key={i} exact component={route.component} />
+										<Route path={route.path} location={location} key={i} exact component={route.component} />
 									))}
 								</Switch>
 							</CSSTransition>

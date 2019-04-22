@@ -35,12 +35,36 @@ class ListingHeader extends Component {
         this.setState({ showDrawer: false });
     }
 
+    getBreadcrumbItems() {
+        const paths = this.props.location.pathname.slice(1).split('/');
+        
+        const count = paths.length;
+
+        var url = '';
+
+        return(
+            paths.map((path, index) => {
+                url += '/' + path;
+
+                if(count -1 === index) {
+                    return <Breadcrumb.Item key={index}>
+                        {path.charAt(0).toUpperCase() + path.slice(1)}
+                    </Breadcrumb.Item>
+                } else {
+                    return <Breadcrumb.Item key={index}>
+                        <Link to={url} >{path.charAt(0).toUpperCase() + path.slice(1)}</Link>
+                    </Breadcrumb.Item>
+                }                
+            })
+        );
+    }
+
     render() {
         return (
             <div className="listing-header">
                 <Breadcrumb >
                     <Breadcrumb.Item><Link to="/"><Icon type="home" /></Link></Breadcrumb.Item>
-                    <Breadcrumb.Item>Produtos</Breadcrumb.Item>
+                    {this.getBreadcrumbItems()}
                 </Breadcrumb>
                 <span className="quantity-results">(1 - 24 de 1889 resultados)</span>
                  <Divider className="mobile" style={{ margin: '12px 0' }}/>

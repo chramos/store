@@ -9,6 +9,10 @@ const routes = [
     {
         path: "/produtos/:category",
         component: Products
+    },
+    {
+        path: "/produtos/:category/:cat",
+        component: Products
     }
 ];
 
