@@ -6,7 +6,7 @@ import './Navbar.css';
 
 import Menu from './Menu';
 import Cart from './Cart';
-
+import Toolbar from './Toolbar';
 
 class Navbar extends Component {
     constructor(props) {
@@ -31,6 +31,7 @@ class Navbar extends Component {
     render() {
         return (
             <div>
+                <Toolbar />
                 <div className="navbar">
                     <Button icon="menu" shape="circle" className="btn-clean mobile" onClick={this.showDrawer} />
                     <div className="navbar-brand">
