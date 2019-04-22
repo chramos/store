@@ -1,0 +1,32 @@
+.products {
+    margin-top: 40px;
+}
+
+.quantity-results {
+    margin-left: 10px;
+}
+
+.results {
+    flex-grow: 1;
+}
+
+.listing-header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listing-header span.quantity-results{
+    margin-left: 8px;
+    color: #ccc;
+    flex-grow: 1
+}
+
+
+@media(max-width: 768px) {
+    .listing-actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-around
+    }
+    
+}
