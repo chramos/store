@@ -52,7 +52,7 @@ class ListingHeader extends Component {
                         onClose={this.closeDrawer}>
                         <Filters />
                     </Drawer>
-                    <Dropdown overlay={OrderMenu} trigger="click">
+                    <Dropdown overlay={OrderMenu} trigger={["click"]}>
                         <Button icon="bars" shape="circle-outline" className="btn-clean"></Button>
                     </Dropdown>
                 </div>

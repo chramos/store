@@ -13,7 +13,6 @@ class Filters extends Component {
                 <Price />
                 <Category />
                 <Size />
-                
             </div>
         );
     }

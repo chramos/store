@@ -12,11 +12,11 @@ class Category extends Component {
 
     render() {
         return (
-            <div class="filters">
+            <div className="filters">
                 <h4 style={{ fontWeight: 'bold', color: '#ccc'}}>CATEGORIA</h4>
                 <Select
                     showSearch
-                    style={{ width: 200 }}
+                    style={{ width: '100%' }}
                     placeholder="Selecione uma categoria"
                     optionFilterProp="children"
                     onChange={() => {}}

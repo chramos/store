@@ -12,11 +12,11 @@ class Size extends Component {
 
     render() {
         return (
-            <div class="filters">
+            <div className="filters">
                 <h4 style={{ fontWeight: 'bold', color: '#ccc'}}>TAMANHO</h4>
                 <Select
                     showSearch
-                    style={{ width: 200 }}
+                    style={{ width: '100%' }}
                     placeholder="Selecione um tamanho"
                     optionFilterProp="children"
                     onChange={() => {}}

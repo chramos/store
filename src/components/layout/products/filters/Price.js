@@ -24,7 +24,7 @@ class Filters extends Component {
 
     render() {
         return (
-            <div class="filters">
+            <div className="filters">
                 <h4 style={{ fontWeight: 'bold', color: '#ccc'}}>PREÇO</h4>
                 <Slider range step={10} min={20} max={200} defaultValue={[30, 80]} onChange={this.handleMin} onAfterChange={this.handleMax} />
                 <p style={{ textAlign: 'right', fontWeight: 'bold', color: '#ccc'}}>
