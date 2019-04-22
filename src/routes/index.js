@@ -7,6 +7,10 @@ const routes = [
         component: Home
     },
     {
+        path: "/produtos",
+        component: Products
+    },
+    {
         path: "/produtos/:gender",
         component: Products
     },

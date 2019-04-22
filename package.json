@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.16.4",
+    "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
@@ -25,6 +26,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-
   "proxy": "http://localhost:5000/api"
 }
