@@ -15,12 +15,9 @@ class QueryResults extends Component {
             return 1;
         } else {
 
-            if(this.props.data.page === 2) {
-                return ((this.props.data.limit * this.props.data.page) - this.props.data.limit);
-            }
-            else {
-                return ((this.props.data.limit * this.props.data.page) - this.props.data.limit) + 1;
-            }
+            
+            return ((this.props.data.limit * this.props.data.page) - this.props.data.limit) + 1;
+            
         }
     }
     render() {
