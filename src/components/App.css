@@ -18,3 +18,37 @@
     opacity: 0;
     transition: opacity 150ms linear;
 }
+
+
+.page {
+    position: absolute;
+    top: 110px;
+    left: 0;
+    right: 0;
+}
+
+.btn-clean {
+    border: none;
+    box-shadow: none;
+}
+  
+.mobile {
+    display: none;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media(max-width: 768px) {
+    .mobile {
+        display: block;  
+    }
+    
+    .desktop {
+        display: none;
+    }
+}
