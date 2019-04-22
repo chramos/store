@@ -10,8 +10,8 @@ class Filters extends Component {
     render() {
         return (
             <div>
-                <Price />
-                <Category />
+                <Price onPriceChange={this.props.onPriceChange} />
+                <Category onCategoryChange={this.props.onCategoryChange} />
                 <Size />
             </div>
         );

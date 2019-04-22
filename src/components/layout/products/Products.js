@@ -17,11 +17,16 @@ class Products extends Component {
         this.state = {
             data: [],
             current: 1,
-            isLoading: true
+            isLoading: true,
+            min: 30,
+            max: 200,
+            category: undefined
         }
 
         this.handlePagination = this.handlePagination.bind(this);
         this.getProducts = this.getProducts.bind(this);
+        this.handlePrice = this.handlePrice.bind(this);
+        
     }
     
     componentDidMount() {
@@ -35,7 +40,10 @@ class Products extends Component {
                 limit: 2,
                 page: page,
                 gender: this.props.match.params.gender,
-                category: this.props.match.params.category
+                category: this.props.match.params.category,
+                min: this.state.min,
+                max: this.state.max,
+
             }
         }).then((result) => {
             console.log(result);
@@ -44,10 +52,17 @@ class Products extends Component {
     }
 
     handlePagination(page) {
-
         this.setState({ isLoading: true });
         this.getProducts(page);
     }
+
+    handlePrice(value) {
+        this.setState({ min: value[0], max: value[1], isLoading: true },() => {
+            this.getProducts();
+        });
+    }
+
+    
 
     render() {
         
@@ -67,7 +82,7 @@ class Products extends Component {
                                     }}
                                 >Filtros de busca</h3>
 
-                                <Filters />
+                                <Filters onPriceChange={this.handlePrice} />
                             </Col>
                             <Col lg={20} md={24}>
                                 <Row gutter={12}>
