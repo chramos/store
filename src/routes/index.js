@@ -7,11 +7,11 @@ const routes = [
         component: Home
     },
     {
-        path: "/produtos/:category",
+        path: "/produtos/:gender",
         component: Products
     },
     {
-        path: "/produtos/:category/:cat",
+        path: "/produtos/:gender/:category",
         component: Products
     }
 ];

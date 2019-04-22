@@ -58,6 +58,9 @@ class Products extends Component {
             ]
         }
     }
+    componentDidMount() {
+        console.log(this.props.match.params.gender, this.props.match.params.category);
+    }
     render() {
         return (
             <div className="page">
