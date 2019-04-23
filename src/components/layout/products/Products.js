@@ -69,7 +69,7 @@ class Products extends Component {
 
     handlePagination(page) {
         this.setState({ isLoading: true });
-        this.getProducts(page);
+        this.getProducts({page: page});
     }
 
     handlePrice(value) {
