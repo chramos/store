@@ -57,6 +57,7 @@ class Products extends Component {
                 category: this.state.category,
                 min: this.state.min,
                 max: this.state.max,
+                pathname: undefined
 
             }
         }).then((result) => {
@@ -82,24 +83,28 @@ class Products extends Component {
         
         this.setState({ gender: gender }, () => {
             let category = (this.state.category !== undefined) ?  '/' + this.state.category : '';
-
-            window.history.pushState('', '', ['/produtos/' + gender + category])
+            let url = '/produtos/' + gender + category;
+            window.history.pushState('', '', [url])
             this.getProducts();
+
+            this.setState({ pathname: url });
         })
     }
 
     handeCategory(category) {
-        if(this.state.gender !== "todos") {
-            window.history.pushState('', '', ['/produtos/' + this.state.gender + '/' + category.name.toLowerCase()])
+        let url;
+
+        if (this.state.gender !== "todos") {
+            url = '/produtos/' + this.state.gender + '/' + category.name.toLowerCase();
         } else {
-            window.history.pushState('', '', [
-                '/produtos/' + 
-                category.gender.toLowerCase() + '/' + 
-                category.name.toLowerCase()])
+            url = '/produtos/' + category.gender.toLowerCase() + '/' + category.name.toLowerCase()
         }
+
+        window.history.pushState('', '', [url])
         
-        this.setState({ isLoading: true, category: category.name.toLowerCase() }, () => {
+        this.setState({ isLoading: true, category: category.name.toLowerCase(), pathname: url }, () => {
             this.getProducts();
+            console.log(this.state.pathname);
         })
 
     }
@@ -113,6 +118,7 @@ class Products extends Component {
                         <ListingHeader 
                             data={this.state.data} 
                             location={this.props.location}
+                            pathname={this.state.pathname}
                             match={this.props.match}
                             onPriceChange={this.handlePrice}
                             onGenderChange={this.handleGender}

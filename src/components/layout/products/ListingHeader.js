@@ -21,11 +21,21 @@ class ListingHeader extends Component {
         super(props);
 
         this.state = {
-            showDrawer: false
+            showDrawer: false,
+
+            pathname: this.props.location.pathname
         }
 
         this.handleDrawer = this.handleDrawer.bind(this);
         this.closeDrawer = this.closeDrawer.bind(this);
+    }
+    
+    componentDidUpdate() {
+        if(this.props.pathname !== undefined && this.state.pathname !== this.props.pathname) {
+            this.setState({
+                pathname: this.props.pathname
+            })
+        }
     }
 
     handleDrawer() {
@@ -37,7 +47,7 @@ class ListingHeader extends Component {
     }
 
     getBreadcrumbItems() {
-        const paths = this.props.location.pathname.slice(1).split('/');
+        const paths = this.state.pathname.slice(1).split('/');
         
         const count = paths.length;
 
