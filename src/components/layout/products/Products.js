@@ -32,7 +32,7 @@ class Products extends Component {
     }
     
     componentDidMount() {
-        console.log(this.props);
+
         this.getProducts();
     }
 
@@ -66,10 +66,8 @@ class Products extends Component {
         });
     }
 
-    handeCategory(value, id) {
-
+    handeCategory(value, index) {
         this.props.history.push('/produtos/' + value)
-        
     }
 
     render() {
@@ -78,7 +76,12 @@ class Products extends Component {
             <div className="page">
                 <div className="container">
                     <div className="products">
-                        <ListingHeader data={this.state.data} location={this.props.location} />
+                        <ListingHeader 
+                            data={this.state.data} 
+                            location={this.props.location}
+                            match={this.props.match}
+                            onPriceChange={this.handlePrice}
+                            onCategoryChange={this.handeCategory} />
                     </div>
                     <div className="content">
                         <Row gutter={12} justify="center">

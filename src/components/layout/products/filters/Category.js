@@ -7,7 +7,8 @@ class Category extends Component {
         super(props);
 
         this.state = {
-            categories: []
+            categories: [],
+            value: undefined
         }
 
         this.renderOptions = this.renderOptions.bind(this);
@@ -39,9 +40,12 @@ class Category extends Component {
     }
 
     handleCategory(value) {
-        this.props.onCategoryChange( 
-        this.state.categories[value].gender + "/" + 
-        this.state.categories[value].name.toLowerCase());        
+        this.setState({ value: value }, () => {
+            this.props.onCategoryChange( 
+            this.state.categories[value].gender + "/" + 
+            this.state.categories[value].name.toLowerCase(), value);
+        });
+                
     }
 
     render() {
@@ -54,6 +58,7 @@ class Category extends Component {
                     placeholder="Selecione uma categoria"
                     optionFilterProp="children"
                     onChange={this.handleCategory}
+                    value={this.state.value}
                     filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                 >
                     {this.renderOptions()}

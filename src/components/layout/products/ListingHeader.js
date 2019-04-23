@@ -78,7 +78,7 @@ class ListingHeader extends Component {
                         placement="right"
                         visible={this.state.showDrawer}
                         onClose={this.closeDrawer}>
-                        <Filters />
+                        <Filters match={this.props.match} onPriceChange={this.props.onPriceChange} onCategoryChange={this.props.onCategoryChange} />
                     </Drawer>
                     <Dropdown overlay={OrderMenu} trigger={["click"]}>
                         <Button icon="bars" shape="circle-outline" className="btn-clean"></Button>
