@@ -63,7 +63,8 @@ class Products extends Component {
         }).then((result) => {
             if(Object.keys(result.data).length === 0) {
                 result.data = [];
-            } 
+            }
+            console.log(result.data);
             this.setState({ data: result.data, isLoading: false, current: result.data.page });
         });
     }

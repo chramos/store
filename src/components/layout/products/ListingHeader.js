@@ -22,7 +22,6 @@ class ListingHeader extends Component {
 
         this.state = {
             showDrawer: false,
-
             pathname: this.props.location.pathname
         }
 
