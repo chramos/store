@@ -33,23 +33,28 @@
 .product-price {
     font-weight: bold;
     color: #91d5ff;
-    font-size: 22px;
 }
 
 .product-old-price {
     font-weight: bold;
     color: #ccc;
-    font-size: 22px;
+
     text-decoration: line-through;
     margin-right: 8px;
 }
 
-
+.product-details {
+    padding: 0 60px;
+}
 @media(max-width: 768px) {
     .listing-actions {
         width: 100%;
         display: flex;
         justify-content: space-around
+    }
+
+    .product-details {
+        padding: 0;
     }
     
 }

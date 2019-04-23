@@ -57,6 +57,18 @@
     transition: all .5s
 }
 
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center
+}
+
+.grow {
+    flex-grow: 1;
+}
+
 @media(max-width: 768px) {
     .mobile {
         display: block;  
