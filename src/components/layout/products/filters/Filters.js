@@ -12,8 +12,8 @@ class Filters extends Component {
         return (
             <div>
                 <Price onPriceChange={this.props.onPriceChange} />
-                <Gender onGenderChange={this.props.onGenderChange} />
-                <Category match={this.props.match} onCategoryChange={this.props.onCategoryChange} />
+                <Gender match={this.props.match} onGenderChange={this.props.onGenderChange}/>
+                <Category match={this.props.match} onCategoryChange={this.props.onCategoryChange}/>
                 <Size />
             </div>
         );

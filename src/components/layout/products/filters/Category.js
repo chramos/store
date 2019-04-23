@@ -16,14 +16,22 @@ class Category extends Component {
     }
 
     componentDidMount() {
-
+        
         axios.get('/categories', {
             params: {
                 gender: this.props.match.params.gender,
             }
         }).then((result) => {
            
-            this.setState({ categories: result.data });
+            this.setState({ categories: result.data }, () => {
+                var index  = this.state.categories.findIndex((category) => {
+                    return category.name.toLowerCase() === this.props.match.params.category;
+                })
+
+                if(index >= 0) {
+                    this.setState({ value: index });
+                }
+            });
         });
     }
 
@@ -58,7 +66,7 @@ class Category extends Component {
                     onChange={this.handleCategory}
                     value={this.state.value}
                     filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                >
+                >   
                     {this.renderOptions()}
 
                 </Select>

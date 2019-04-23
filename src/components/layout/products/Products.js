@@ -34,11 +34,9 @@ class Products extends Component {
     }
     
     componentDidMount() {
-
+        
         if (this.props.match.params.gender !== undefined) {
-            this.setState({ gender: this.props.match.params.gender }, () => {
-                console.log('gender', this.state.gender);
-            })
+            this.setState({ gender: this.props.match.params.gender })
         }
         if (this.props.match.params.category !== undefined) {
             this.setState({ category: this.props.match.params.category })
@@ -46,11 +44,10 @@ class Products extends Component {
 
         setTimeout(() => {
             this.getProducts();
-        }, 1000)
+        }, 1500)
     }
 
     getProducts(data={}) {
-        console.log(this.state);
 
         axios.get('/products', {
             params: {
@@ -132,7 +129,7 @@ class Products extends Component {
                                 >Filtros de busca</h3>
 
                                 <Filters 
-                                    match={this.props.match} 
+                                    match={this.props.match}
                                     onGenderChange={this.handleGender}
                                     onPriceChange={this.handlePrice} 
                                     onCategoryChange={this.handeCategory} />

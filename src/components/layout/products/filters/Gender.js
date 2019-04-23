@@ -7,12 +7,11 @@ class Gender extends Component {
         super(props);
 
         this.state = {
-            gender: undefined
+            gender: this.props.match.params.gender
         }
 
         this.handleGender = this.handleGender.bind(this);
     }
-
 
     handleGender(value) {
         this.setState({ gender: value }, () => {
