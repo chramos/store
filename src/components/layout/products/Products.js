@@ -27,6 +27,7 @@ class Products extends Component {
         this.handlePagination = this.handlePagination.bind(this);
         this.getProducts = this.getProducts.bind(this);
         this.handlePrice = this.handlePrice.bind(this);
+        this.handleGender = this.handleGender.bind(this);
         this.handeCategory = this.handeCategory.bind(this);
         
     }
@@ -66,6 +67,10 @@ class Products extends Component {
         });
     }
 
+    handleGender(gender) {
+        console.log('handleGender', gender);
+    }
+
     handeCategory(value, index) {
         this.props.history.push('/produtos/' + value)
     }
@@ -81,6 +86,7 @@ class Products extends Component {
                             location={this.props.location}
                             match={this.props.match}
                             onPriceChange={this.handlePrice}
+                            onGenderChange={this.handleGender}
                             onCategoryChange={this.handeCategory} />
                     </div>
                     <div className="content">
@@ -93,7 +99,11 @@ class Products extends Component {
                                     }}
                                 >Filtros de busca</h3>
 
-                                <Filters match={this.props.match} onPriceChange={this.handlePrice} onCategoryChange={this.handeCategory} />
+                                <Filters 
+                                    match={this.props.match} 
+                                    onGenderChange={this.handleGender}
+                                    onPriceChange={this.handlePrice} 
+                                    onCategoryChange={this.handeCategory} />
                             </Col>
                             <Col lg={20} md={24}>
                                 <Row gutter={12}>
