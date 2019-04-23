@@ -8,12 +8,8 @@ function NavbarMenu(props) {
 			mode={props.mode}
 			style={props.style}
 		>
-			<Menu.Item key="male">
-				<Link to="/produtos/masculino">MASCULINO</Link>
-			</Menu.Item>
-			
-			<Menu.Item key="female">
-				<Link to="/produtos/feminino">FEMININO</Link>
+			<Menu.Item key="products">
+				<Link  to="/produtos">PRODUTOS</Link>
 			</Menu.Item>
 		</Menu>
      );

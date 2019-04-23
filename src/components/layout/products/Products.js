@@ -32,6 +32,7 @@ class Products extends Component {
     }
     
     componentDidMount() {
+        console.log(this.props);
         this.getProducts();
     }
 
