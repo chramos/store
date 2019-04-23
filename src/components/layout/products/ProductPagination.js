@@ -21,6 +21,10 @@ class ProductPagination extends Component {
         if (Array.isArray(this.props.data.docs) && this.props.data.docs.length <= 0) {
             return("");
         }
+
+        if (this.props.data.pages === 1) {
+            return("");
+        }
         return (
             <Row gutter={12}>
                 <Col xl={24} lg={24} md={24} sm={24} xs={24}>

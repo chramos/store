@@ -104,7 +104,6 @@ class Products extends Component {
         
         this.setState({ isLoading: true, category: category.name.toLowerCase(), pathname: url }, () => {
             this.getProducts();
-            console.log(this.state.pathname);
         })
 
     }
