@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Spin, Row, Col, InputNumber} from 'antd';
+import { Spin, Row, Col, InputNumber, Divider, Button } from 'antd';
 
 import axios from 'axios';
 
@@ -55,7 +55,7 @@ class ProductDetails extends Component {
                             <ProductCarousel product={this.state.product} style={{ height: 400 }} />
                         </Col>
                         <Col className="" xl={14} lg={14} md={14} sm={24} xs={24}>
-                            <div className="">
+                            <div className="product-details-info">
                                 <h1 style={{ fontSize: 36 }} className="desktop">{this.state.product.name}</h1>
                                 <ProductPrice style={{ fontSize: 36 }} product={this.state.product} />
 
@@ -65,11 +65,23 @@ class ProductDetails extends Component {
                                 </section>
 
                                 <section className="product-details-section">
-                                    <p className="product-details-label">Quantidade</p>
-                                    <InputNumber min={1} max={this.state.product.stock} defaultValue={1} onChange={() => {}} />
+                                    <div className="flex">
+                                        <div>
+                                            <InputNumber min={1} max={this.state.product.stock} defaultValue={1} size="large" onChange={() => {}} />
+                                        </div>
+                                        <div style={{ marginLeft: 18 }}>
+                                            <Button  type="default" icon="shopping-cart" size="large">ADICIONAR AO CARRINHO</Button>
+                                        </div>   
+                                    </div>
+                                    
                                 </section>
+
+                                <Divider />
                                 
-                                
+                                <section className="product-details-section">
+                                    <p className="product-details-label">Descrição</p>
+                                    <p className="">{this.state.product.description}</p>
+                                </section>
                             </div>
                         </Col>
                     </Row>

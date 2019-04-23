@@ -8,10 +8,10 @@ const style = {
         padding: '12px',
         textAlign: 'center',
         cursor: 'pointer',
-        fontSize: 22
+        fontSize: 18
     },
     active: {
-        border: '2px solid #29A634',
+        border: '2px solid #91d5ff',
     }
 }
 class ProductSizes extends Component {
