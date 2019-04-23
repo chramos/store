@@ -18,6 +18,16 @@ class ProductPagination extends Component {
             return("");
         }
 
+        
+
+        if (Array.isArray(this.props.data.docs) && this.props.data.docs.length <= 0) {
+            return("");
+        }
+
+        // if(Object.keys(this.props.data.docs).length <= 0) {
+        //     return("");
+        // }
+
         return (
             <Row gutter={12}>
                 <Col xl={24} lg={24} md={24} sm={24} xs={24}>

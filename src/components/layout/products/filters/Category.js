@@ -1,13 +1,47 @@
 import React, { Component } from 'react';
 import { Select } from 'antd';
+import axios from 'axios';
 
 class Category extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            category: null
+            categories: []
         }
+
+        this.renderOptions = this.renderOptions.bind(this);
+        this.handleCategory = this.handleCategory.bind(this);
+    }
+
+    componentDidMount() {
+
+        axios.get('/categories', {
+            params: {
+                gender: this.props.match.params.gender,
+            }
+        }).then((result) => {
+           
+            this.setState({ categories: result.data });
+        });
+    }
+
+    renderOptions() {
+        if(Object.keys(this.state.categories).length > 0) {
+            return(
+                this.state.categories.map((category, index) => (
+                    <Select.Option value={index} key={index}>{category.name}</ Select.Option>
+                ))
+            );
+        } else {
+            return("");
+        }
+    }
+
+    handleCategory(value) {
+        this.props.onCategoryChange( 
+        this.state.categories[value].gender + "/" + 
+        this.state.categories[value].name.toLowerCase());        
     }
 
     render() {
@@ -19,14 +53,11 @@ class Category extends Component {
                     style={{ width: '100%' }}
                     placeholder="Selecione uma categoria"
                     optionFilterProp="children"
-                    onChange={() => {}}
-                    onFocus={() => {}}
-                    onBlur={() => {}}
+                    onChange={this.handleCategory}
                     filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                 >
-                    <Select.Option value="0">Camisetas</ Select.Option>
-                    <Select.Option value="1">Camisas</Select.Option>
-                    <Select.Option value="2">Polo</Select.Option>
+                    {this.renderOptions()}
+
                 </Select>
             </div>
         );

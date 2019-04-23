@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, Divider, Spin } from 'antd';
+import { withRouter } from "react-router-dom";
+import { Row, Col, Divider, Spin, Empty } from 'antd';
 import axios from 'axios';
 
 import './Products.css';
@@ -26,12 +27,12 @@ class Products extends Component {
         this.handlePagination = this.handlePagination.bind(this);
         this.getProducts = this.getProducts.bind(this);
         this.handlePrice = this.handlePrice.bind(this);
+        this.handeCategory = this.handeCategory.bind(this);
         
     }
     
     componentDidMount() {
         this.getProducts();
-        
     }
 
     getProducts(page=1) {
@@ -46,7 +47,9 @@ class Products extends Component {
 
             }
         }).then((result) => {
-            console.log(result);
+            if(Object.keys(result.data).length === 0) {
+                result.data = [];
+            } 
             this.setState({ data: result.data, isLoading: false, current: result.data.page });
         });
     }
@@ -62,7 +65,11 @@ class Products extends Component {
         });
     }
 
-    
+    handeCategory(value, id) {
+
+        this.props.history.push('/produtos/' + value)
+        
+    }
 
     render() {
         
@@ -82,7 +89,7 @@ class Products extends Component {
                                     }}
                                 >Filtros de busca</h3>
 
-                                <Filters onPriceChange={this.handlePrice} />
+                                <Filters match={this.props.match} onPriceChange={this.handlePrice} onCategoryChange={this.handeCategory} />
                             </Col>
                             <Col lg={20} md={24}>
                                 <Row gutter={12}>
@@ -109,6 +116,14 @@ class Products extends Component {
                 </div>
             );
         } else {
+
+            if(Object.keys(this.state.data.docs).length === 0) {
+                return(
+                    
+                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+
+                );
+            }
             return(
                 this.state.data.docs.map((product, index) => (
                     <ProductCard product={product} key={index} />
@@ -118,4 +133,4 @@ class Products extends Component {
     }
 }
 
-export default Products;
+export default withRouter(Products);
