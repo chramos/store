@@ -6,6 +6,7 @@ import axios from 'axios';
 import ProductPrice from './ProductPrice';
 import ProductCarousel from './ProductCarousel';
 import ProductHeader from './ProductHeader';
+import ProductSizes from './ProductSizes';
 
 class ProductDetails extends Component {
 
@@ -26,6 +27,10 @@ class ProductDetails extends Component {
 
     capitalize(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    handleSize(value) {
+        console.log(value);
     }
 
     render() {
@@ -52,9 +57,19 @@ class ProductDetails extends Component {
                         <Col className="" xl={14} lg={14} md={14} sm={24} xs={24}>
                             <div className="">
                                 <h1 style={{ fontSize: 36 }} className="desktop">{this.state.product.name}</h1>
-                                <ProductPrice style={{ fontSize: 28 }} product={this.state.product} />
+                                <ProductPrice style={{ fontSize: 36 }} product={this.state.product} />
 
-                                <InputNumber min={1} max={this.state.product.stock} defaultValue={1} onChange={() => {}} />
+                                <section className="product-details-section">
+                                    <p className="product-details-label">Tamanho</p>
+                                    <ProductSizes onSelected={this.handleSize} value={this.state.product.sizes} />
+                                </section>
+
+                                <section className="product-details-section">
+                                    <p className="product-details-label">Quantidade</p>
+                                    <InputNumber min={1} max={this.state.product.stock} defaultValue={1} onChange={() => {}} />
+                                </section>
+                                
+                                
                             </div>
                         </Col>
                     </Row>

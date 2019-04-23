@@ -46,6 +46,16 @@
 .product-details {
     padding: 0 60px;
 }
+
+.product-details-label {
+    font-weight: bold;
+    color: #ccc;
+    text-transform: uppercase
+}
+
+.product-details-section {
+    margin: 10px 0;
+}
 @media(max-width: 768px) {
     .listing-actions {
         width: 100%;
