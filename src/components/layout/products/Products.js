@@ -21,7 +21,8 @@ class Products extends Component {
             isLoading: true,
             min: 30,
             max: 200,
-            category: undefined
+            category: undefined,
+            gender: "todos",
         }
 
         this.handlePagination = this.handlePagination.bind(this);
@@ -34,16 +35,29 @@ class Products extends Component {
     
     componentDidMount() {
 
-        this.getProducts();
+        if (this.props.match.params.gender !== undefined) {
+            this.setState({ gender: this.props.match.params.gender }, () => {
+                console.log('gender', this.state.gender);
+            })
+        }
+        if (this.props.match.params.category !== undefined) {
+            this.setState({ category: this.props.match.params.category })
+        }
+
+        setTimeout(() => {
+            this.getProducts();
+        }, 1000)
     }
 
-    getProducts(page=1) {
+    getProducts(data={}) {
+        console.log(this.state);
+
         axios.get('/products', {
             params: {
                 limit: 2,
-                page: page,
-                gender: this.props.match.params.gender,
-                category: this.props.match.params.category,
+                page: data.page || 1,
+                gender: this.state.gender,
+                category: this.state.category,
                 min: this.state.min,
                 max: this.state.max,
 
@@ -68,11 +82,29 @@ class Products extends Component {
     }
 
     handleGender(gender) {
-        console.log('handleGender', gender);
+        
+        this.setState({ gender: gender }, () => {
+            let category = (this.state.category !== undefined) ?  '/' + this.state.category : '';
+
+            window.history.pushState('', '', ['/produtos/' + gender + category])
+            this.getProducts();
+        })
     }
 
-    handeCategory(value, index) {
-        this.props.history.push('/produtos/' + value)
+    handeCategory(category) {
+        if(this.state.gender !== "todos") {
+            window.history.pushState('', '', ['/produtos/' + this.state.gender + '/' + category.name.toLowerCase()])
+        } else {
+            window.history.pushState('', '', [
+                '/produtos/' + 
+                category.gender.toLowerCase() + '/' + 
+                category.name.toLowerCase()])
+        }
+        
+        this.setState({ isLoading: true, category: category.name.toLowerCase() }, () => {
+            this.getProducts();
+        })
+
     }
 
     render() {
@@ -111,6 +143,7 @@ class Products extends Component {
                                 </Row>
                                 <ProductPagination
                                     current={this.state.current}
+                                    isLoading={this.state.isLoading}
                                     data={this.state.data}
                                     handlePagination={this.handlePagination}
                                 />

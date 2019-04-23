@@ -41,9 +41,7 @@ class Category extends Component {
 
     handleCategory(value) {
         this.setState({ value: value }, () => {
-            this.props.onCategoryChange( 
-            this.state.categories[value].gender + "/" + 
-            this.state.categories[value].name.toLowerCase(), value);
+            this.props.onCategoryChange(this.state.categories[value]);
         });
                 
     }
