@@ -44,9 +44,9 @@ class Cart extends Component {
             });
         });
         
-        if(this.props.count <= 0) {
+        if(this.props.store.getState().cartCount <= 0) {
             return(
-                <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                <Empty style={{ width: 350 }} image={Empty.PRESENTED_IMAGE_SIMPLE} />
             );
     
         }
