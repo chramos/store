@@ -14,7 +14,7 @@ function ProductCard(props) {
         <Link to={url}>
             <Col className="gutter-row product" lg={6} md={8} sm={24} xs={24}>               
                 <Card
-                    onClick={() => {console.log(props.product)}}
+                    // onClick={() => {console.log(props.product)}}
                     hoverable
                     style={{ width: '100%' }}
                     cover={<img alt="example" src={props.product.images[0]} />}

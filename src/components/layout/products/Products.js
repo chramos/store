@@ -170,6 +170,7 @@ class Products extends Component {
 
                                 <Filters 
                                     match={this.props.match}
+                                    closeDrawer={() => {}}
                                     onGenderChange={this.handleGender}
                                     onPriceChange={this.handlePrice} 
                                     onCategoryChange={this.handeCategory} />

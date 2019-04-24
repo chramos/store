@@ -6,7 +6,7 @@ function ProductCarousel(props) {
     return (
         <Carousel effect="fade" style={props.style}>
             {props.product.images.map((image, index) => (
-                <div><img src={ image } width="100%" alt="" key={index} /></div>
+                <img src={ image } width="100%" alt="" key={index} />
             ))}
         </Carousel>
     );
