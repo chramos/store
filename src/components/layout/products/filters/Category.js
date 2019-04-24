@@ -64,6 +64,7 @@ class Category extends Component {
     handleCategory(value) {
         this.setState({ value: value }, () => {
             this.props.onCategoryChange(this.state.categories[value]);
+            this.props.closeDrawer();
         });
                 
     }

@@ -21,6 +21,7 @@ class Filters extends Component {
     afterChange(value) {
         this.setState({ min: value[0], max: value[1] })
         this.props.onPriceChange(value);
+        this.props.closeDrawer();
     }
 
     render() {

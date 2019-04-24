@@ -16,6 +16,7 @@ class Gender extends Component {
     handleGender(value) {
         this.setState({ gender: value }, () => {
             this.props.onGenderChange(value);
+            this.props.closeDrawer();
         });
     }
 

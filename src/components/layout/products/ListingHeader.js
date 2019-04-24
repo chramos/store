@@ -94,8 +94,9 @@ class ListingHeader extends Component {
                         placement="right"
                         visible={this.state.showDrawer}
                         onClose={this.closeDrawer}>
-                        <Filters 
-                            match={this.props.match} 
+                        <Filters
+                            match={this.props.match}
+                            closeDrawer={this.closeDrawer}
                             onPriceChange={this.props.onPriceChange}
                             onGenderChange={this.props.onGenderChange}
                             onCategoryChange={this.props.onCategoryChange} />
