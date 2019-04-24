@@ -14,11 +14,13 @@ class Navbar extends Component {
 
         this.state = {
             collapse: false,
-            count: null
+            count: null,
+            visible: false
         }
 
         this.showDrawer = this.showDrawer.bind(this);
         this.closeDrawer = this.closeDrawer.bind(this);
+        this.onVisibleChange = this.onVisibleChange.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +48,10 @@ class Navbar extends Component {
         this.setState({ collapse: true });
     }
 
+    onVisibleChange(visible) {
+        this.setState({ visible });
+    }
+
     render() {
         this.props.store.subscribe(() => {
 			this.setState({
@@ -64,7 +70,7 @@ class Navbar extends Component {
                         </Link>
                     </div>
                     
-                    <Popover placement="bottomRight" trigger="click" content={<Cart store={this.props.store} />} >
+                    <Popover visible={this.state.visible} onVisibleChange={this.onVisibleChange} placement="bottomRight" trigger="click" content={<Cart closePopover={this.onVisibleChange} store={this.props.store} />} >
                         <Button size="large" shape="circle" className="btn-clean">
                             <Badge count={this.state.count} showZero={false}>
                                 <Icon style={{ fontSize: '22px' }} type="shopping-cart" />
