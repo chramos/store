@@ -88,8 +88,8 @@ class Cart extends Component {
                                     <div className="flex">
                                         <h2 className="grow"><strong>TOTAL</strong></h2>
                                         <div style={{ textAlign: 'right' }}>
-                                            <h2 style={{ margin: 0 }} className="product-price">{ this.state.total }</h2>
-                                            <span className="text-muted" >ou 12x de <span className="product-price">{ this.state.total / 12 }</span> </span>
+                                            <h2 style={{ margin: 0, fontSize: 32 }} className="product-price">{ this.state.total.toFixed(2).replace('.', ',') }</h2>
+                                            <span className="text-muted" >ou 12x de <span className="product-price">{ (this.state.total / 12).toFixed(2).replace('.', ',') }</span> </span>
                                         </div>
                                     </div>
                                     <Button type="default" size="large" block><strong>FECHAR PEDIDO</strong></Button>

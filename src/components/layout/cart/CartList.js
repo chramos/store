@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { List, InputNumber, Button, Popconfirm } from 'antd';
-import ProductPrice from '../products/ProductPrice';
 
 class CartList extends Component {
 
@@ -15,7 +14,7 @@ class CartList extends Component {
                     <List.Item key={item.id}>
                         <List.Item.Meta
                             avatar={<img alt="" width="62" src={item.images[0]} />}
-                            title={<h3 className="grow">{item.name}</h3>}
+                            title={ <strong style={{ fontSize: 18 }}>{item.name}</strong> }
                             description={
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                                         <span>Tamanho: {item.size}</span>
@@ -27,7 +26,7 @@ class CartList extends Component {
                             <div>
                                 <InputNumber min={1} max={item.stock} defaultValue={item.quantity} size="large" onChange={(quantity) => this.props.onQuantityChange(index, quantity)  } />
                             </div>
-                            <span style={{ fontSize: 22 }}><ProductPrice product={item} /></span>
+                            <span style={{ margin: 0, fontSize: 24 }} className="product-price">{ item.price.toFixed(2).replace('.', ',') }</span>
                             <Popconfirm title="Deseja remover este item do carrinho?" onConfirm={() => this.props.onRemove(index)} onCancel={() => {}} okText="Remover" cancelText="Cancelar">
                                 <Button className="btn-clean" shape="circle" icon="close" />
                             </Popconfirm>
