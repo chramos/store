@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Spin, Row, Col, InputNumber, Divider, Button } from 'antd';
+import { Spin, Row, Col, InputNumber, Divider, Button, message } from 'antd';
 
 import axios from 'axios';
 
@@ -15,8 +15,15 @@ class ProductDetails extends Component {
 
         this.state = {
             product: {},
-            isLoading: true
+            isLoading: true,
+
+            size: undefined,
+            quantity: 1
         }
+
+        this.handleSize = this.handleSize.bind(this);
+        this.handleQuantity = this.handleQuantity.bind(this);
+        this.addToCart = this.addToCart.bind(this);
     }
 
     componentDidMount() {
@@ -30,7 +37,62 @@ class ProductDetails extends Component {
     }
 
     handleSize(value) {
-        console.log(value);
+        this.setState({ size: value });
+    }
+
+    handleQuantity(number) {
+        this.setState({ quantity: number });
+    }
+
+    alreadyInCart(cart) {
+
+        var result = false;
+
+        if (Object.keys(cart).length <= 0) {
+            result = false;
+        }
+
+        cart.forEach(element => {
+            if(element._id === this.state.product._id) {
+                console.log('iqual');
+                result = true;
+            }
+        });
+
+        return result;
+    }
+
+    addToCart() {
+        var cart = (JSON.parse(localStorage.getItem('cart')) === null) ? [] : (JSON.parse(localStorage.getItem('cart')))
+
+        if (this.state.size === undefined) {
+            return message.error('Oops! Você esqueceu de selecionar um tamanho.');
+        }
+
+        else if (this.alreadyInCart(cart)) {
+            return message.error('Oops! Este produto já está no seu carrinho.');
+        }
+        
+        else if (this.state.quantity > this.state.product.stock) {
+            return message.error('Oops! A quantidade seleciona excede a quantidade em estoque.');
+        }
+
+        else {
+            let value = Object.assign(this.state.product);
+            value['size'] = this.state.size;
+            value['quantity'] = this.state.quantity;
+
+            if (Object.keys(cart).length > 0) {
+                localStorage.removeItem('cart')
+            }
+
+            cart.push(Object.assign(value));
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        return message.success('Produto adicionado ao seu carrinho :)');
+        
     }
 
     render() {
@@ -67,10 +129,10 @@ class ProductDetails extends Component {
                                 <section className="product-details-section">
                                     <div className="flex">
                                         <div>
-                                            <InputNumber min={1} max={this.state.product.stock} defaultValue={1} size="large" onChange={() => {}} />
+                                            <InputNumber min={1} max={this.state.product.stock} defaultValue={1} size="large" onChange={this.handleQuantity} />
                                         </div>
                                         <div style={{ marginLeft: 18 }}>
-                                            <Button  type="default" icon="shopping-cart" size="large">ADICIONAR AO CARRINHO</Button>
+                                            <Button  type="default" icon="shopping-cart" size="large" onClick={this.addToCart}>ADICIONAR AO CARRINHO</Button>
                                         </div>   
                                     </div>
                                     

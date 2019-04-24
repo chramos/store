@@ -1,9 +1,11 @@
 import React from 'react';
+import { Empty } from 'antd';
 
 function Cart(props) {
     return(
         <div>
-            <span>Nenhum produto no carrinho.</span>
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+
         </div>
     );
 }
