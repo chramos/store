@@ -22,11 +22,24 @@ class Navbar extends Component {
     }
 
     componentDidMount() {
+
         var cart = (JSON.parse(localStorage.getItem('cart')));
 
         if(cart != null) {
-            this.setState({ count: Object.keys(cart).length })
+            const { store } = this.props;
+            const len = Object.keys(cart).length;
+
+            store.dispatch({
+                type: 'CHANGE_CART',
+                payload: len
+            });
+
+            this.setState({ count: len })
         }
+    }
+
+    componentDidUpdate() {
+        console.log('will update');
     }
 
     closeDrawer() {
@@ -38,6 +51,11 @@ class Navbar extends Component {
     }
 
     render() {
+        this.props.store.subscribe(() => {
+			this.setState({
+				count: this.props.store.getState().cartCount
+			})
+		});
         return (
             <div>
                 <Toolbar />

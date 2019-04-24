@@ -44,6 +44,12 @@ class Cart extends Component {
         cart.splice(index, 1);
 
         this.setState({ cart: cart }, () => {
+
+            this.props.store.dispatch({
+                type: 'CHANGE_CART',
+                payload: Object.keys(cart).length
+            });
+            
             this.handleTotal();
 
             localStorage.removeItem('cart');

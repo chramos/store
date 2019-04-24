@@ -9,17 +9,18 @@ import routes from '../routes';
 import './App.css';
 
 class App extends Component {
-  render() {
+  	render() {
+		
 		return (
 			<div>
 				<BrowserRouter>
-					<Navbar />
+					<Navbar store={this.props.store} />
 					<Route render={({location}) => (
 						<TransitionGroup>
 							<CSSTransition timeout={750} classNames="fade" key={location.key}>
 								<Switch location={location}>
 									{routes.map((route, i) => (
-										<Route path={route.path} location={location} key={i} exact component={route.component} />
+										<Route path={route.path} location={location} key={i} exact component={(props) => <route.component {...props} store={this.props.store} />} />
 									))}
 								</Switch>
 							</CSSTransition>
