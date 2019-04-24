@@ -8,20 +8,24 @@ class Cart extends Component {
         super(props);
 
         this.state = {
-            cart: [],
+            cart: JSON.parse(localStorage.getItem('cart')) || null,
             total: 0
         }
 
         this.handleTotal = this.handleTotal.bind(this);
     }
     componentDidMount() {
-        if(this.props.count > 0) {
-            this.setState({ cart: JSON.parse(localStorage.getItem('cart')) }, () => {
+        
+        var cart = (JSON.parse(localStorage.getItem('cart')));
+
+        if(cart != null) {
+            this.setState({ cart: cart }, () => {
                 this.handleTotal();
             })
         }
     }
 
+    
     handleTotal() {
         let total = 0;
         this.state.cart.forEach((element) => {
@@ -32,6 +36,12 @@ class Cart extends Component {
     }
 
     render() {
+        this.props.store.subscribe(() => {
+            const cart = (JSON.parse(localStorage.getItem('cart')));
+
+			this.setState({ cart: cart })
+        });
+        
         if(this.props.count <= 0) {
             return(
                 <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
@@ -39,38 +49,41 @@ class Cart extends Component {
     
         }
         return(
-            <div style={{ minWidth: 350 }}>
-                <List
-                    dataSource={this.state.cart}
-                    renderItem={item => (
-                        <List.Item key={item.id}>
-                            <List.Item.Meta
-                                avatar={<img alt="" width="62" src={item.images[0]} />}
-                                title={
-                                    <div className="flex">
-                                        <h3 className="grow">{item.name}</h3>
-                                        <span style={{ marginLeft: 12, fontSize: 22 }}><ProductPrice product={item} /></span>
-                                    </div>
-                                }
-                                description={
-                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                            <span>Tamanho: {item.size}</span>
-                                            <span>Quantidade: {item.quantity}</span>
-                                    </div>}
-                            />
-                    
-                        </List.Item>
-                    )}>
-                    <List.Item>
-                        <div style={{ width: '100%' }}>
-                            <p style={{ textAlign: 'center' }}>
-                                <strong>TOTAL:&nbsp;</strong>
-                                <span className="product-price" style={{ fontSize: 22 }}>{this.state.total}</span>
-                            </p>
-                        </div>
-                    </List.Item>
-                    <Link to={{ pathname: "/carrinho", state: { total: this.state.total } }} className="ant-btn ant-btn-primary ant-btn-lg ant-btn-block"><strong>VER MINHA COMPRA</strong></Link>
-                </List>
+            <div>
+                <div style={{ minWidth: 350, overflowY: 'auto', maxHeight: 300 }}>
+                    <List
+                        dataSource={this.state.cart}
+                        renderItem={item => (
+                            <List.Item key={item.id}>
+                                <List.Item.Meta
+                                    avatar={<img alt="" width="62" src={item.images[0]} />}
+                                    title={
+                                        <div className="flex">
+                                            <h3 className="grow">{item.name}</h3>
+                                            <span style={{ marginLeft: 12, fontSize: 22 }}><ProductPrice product={item} /></span>
+                                        </div>
+                                    }
+                                    description={
+                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <span>Tamanho: {item.size}</span>
+                                                <span>Quantidade: {item.quantity}</span>
+                                        </div>}
+                                />
+                        
+                            </List.Item>
+                        )}>
+                        
+                    </List>
+                </div>
+                <List.Item>
+                    <div style={{ width: '100%' }}>
+                        <p style={{ textAlign: 'center' }}>
+                            <strong>TOTAL:&nbsp;</strong>
+                            <span className="product-price" style={{ fontSize: 22 }}>{this.state.total}</span>
+                        </p>
+                    </div>
+                </List.Item>
+                <Link to={{ pathname: "/carrinho", state: { total: this.state.total } }} className="ant-btn ant-btn-primary ant-btn-lg ant-btn-block"><strong>VER MINHA COMPRA</strong></Link>
             </div>
         );
     }
