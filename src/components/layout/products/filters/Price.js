@@ -29,7 +29,7 @@ class Filters extends Component {
                 <h4 style={{ fontWeight: 'bold', color: '#ccc'}}>PREÇO</h4>
                 <Slider range step={10} min={20} max={200} defaultValue={[30, 200]} onChange={this.handleMin} onAfterChange={this.afterChange} />
                 <p style={{ textAlign: 'right', fontWeight: 'bold', color: '#ccc'}}>
-                    <span className="price">R${this.state.min}</span> - <span className="price">R$ {this.state.max}</span>
+                    <span className="filter-price">R${this.state.min}</span> - <span className="filter-price">R$ {this.state.max}</span>
                 </p>
             </div>
         );

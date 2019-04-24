@@ -49,6 +49,16 @@
     height: auto;
 }
 
+.price::before {
+    content: 'R$ ';
+    font-size: 10px;
+    /* color: #ccc */
+}
+
+.blue {
+    color: #91d5ff;
+}
+
 .loading {
     display: flex;
     justify-content: center;

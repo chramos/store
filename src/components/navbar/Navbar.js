@@ -14,7 +14,7 @@ class Navbar extends Component {
 
         this.state = {
             collapse: false,
-            count: 0
+            count: null
         }
 
         this.showDrawer = this.showDrawer.bind(this);
@@ -22,6 +22,11 @@ class Navbar extends Component {
     }
 
     componentDidMount() {
+        var cart = (JSON.parse(localStorage.getItem('cart')));
+
+        if(cart != null) {
+            this.setState({ count: Object.keys(cart).length })
+        }
     }
 
     closeDrawer() {
@@ -45,14 +50,12 @@ class Navbar extends Component {
                         </Link>
                     </div>
                     
-                    <Popover placement="bottomRight" trigger="click" content={<Cart />} >
-                        
+                    <Popover placement="bottomRight" trigger="click" content={<Cart count={this.state.count} />} >
                         <Button size="large" shape="circle" className="btn-clean">
                             <Badge count={this.state.count} showZero={false}>
                                 <Icon style={{ fontSize: '22px' }} type="shopping-cart" />
                             </Badge>
                         </Button>
-                        
                     </Popover>
                     
 

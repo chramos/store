@@ -54,7 +54,6 @@ class ProductDetails extends Component {
 
         cart.forEach(element => {
             if(element._id === this.state.product._id) {
-                console.log('iqual');
                 result = true;
             }
         });
@@ -121,7 +120,7 @@ class ProductDetails extends Component {
                         <Col className="" xl={14} lg={14} md={14} sm={24} xs={24}>
                             <div className="product-details-info">
                                 <h1 style={{ fontSize: 36 }} className="desktop">{this.state.product.name}</h1>
-                                <ProductPrice style={{ fontSize: 36 }} product={this.state.product} />
+                                <span className="blue"><ProductPrice style={{ fontSize: 36 }} product={this.state.product} /></span>
 
                                 <section className="product-details-section">
                                     <p className="product-details-label">Tamanho</p>

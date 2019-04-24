@@ -20,7 +20,7 @@ function ProductCard(props) {
                     cover={<img alt="example" src={props.product.images[0]} />}
                 >
                     <h3 className="product-name">{props.product.name}</h3>
-                    <ProductPrice style={{ fontSize: 32 }} product={props.product} />
+                    <span className="blue"><ProductPrice style={{ fontSize: 32, }} product={props.product} /></span>
                 </Card>
             </Col>
         </Link>

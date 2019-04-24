@@ -32,7 +32,7 @@
 
 .product-price {
     font-weight: bold;
-    color: #91d5ff;
+
 }
 
 .product-old-price {
@@ -41,6 +41,11 @@
 
     text-decoration: line-through;
     margin-right: 8px;
+}
+
+.product-old-price::before, .product-price::before{
+    content: 'R$ ';
+    font-size: 10px;
 }
 
 .product-details {
