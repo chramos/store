@@ -69,7 +69,7 @@ class Cart extends Component {
                             </p>
                         </div>
                     </List.Item>
-                    <Link onClick={this.hide} to="/" className="ant-btn ant-btn-primary ant-btn-lg ant-btn-block"><strong>VER MINHA COMPRA</strong></Link>
+                    <Link to={{ pathname: "/carrinho", state: { total: this.state.total } }} className="ant-btn ant-btn-primary ant-btn-lg ant-btn-block"><strong>VER MINHA COMPRA</strong></Link>
                 </List>
             </div>
         );

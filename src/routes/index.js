@@ -1,6 +1,7 @@
 import Home from '../components/layout/Home';
 import Products from '../components/layout/products/Products';
 import ProductDetails from '../components/layout/products/ProductDetails';
+import Cart from '../components/layout/cart/Cart';
 
 const routes = [
     {
@@ -22,6 +23,10 @@ const routes = [
     {
         path: "/produtos/:gender/:category/:product/:id",
         component: ProductDetails
+    },
+    {
+        path: "/carrinho",
+        component: Cart
     }
 ];
 

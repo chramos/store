@@ -79,6 +79,10 @@
     flex-grow: 1;
 }
 
+.text-muted {
+    color: rgba(0,0,0,0.45) !important;
+}
+
 @media(max-width: 768px) {
     .mobile {
         display: block;  

@@ -1,0 +1,34 @@
+.cart {
+    margin: 40px 0;
+}
+
+.cart-finish {
+    padding: 12px;
+    background-color: #fafafa;
+    width: 100%;
+    z-index: 20px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+}
+
+.cart-list-action {
+    display: flex;
+    min-width: 300px;
+    justify-content: space-between;
+}
+
+@media(max-width: 768px) {
+    .cart-finish {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+
+}
+
+@media(max-width: 640px) {
+    .cart-list-action {
+       
+        width: 100%;
+        margin-top: 12px;
+    }
+}

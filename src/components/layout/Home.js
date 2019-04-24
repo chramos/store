@@ -9,7 +9,7 @@ const images = [
 
 class Home extends Component {
     render() {
-        console.log(this.props);
+
         return (
             <div className="page">
                 <Carousel autoplay>
