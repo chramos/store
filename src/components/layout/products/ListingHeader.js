@@ -5,14 +5,6 @@ import { Link } from 'react-router-dom';
 import Filters from './filters/Filters';
 import QueryResults from '../../QueryResults';
 
-const OrderMenu = (
-    <Menu>
-        <Menu.Item key="0">Menor preço</Menu.Item>
-        <Menu.Item key="1">Maior preço</Menu.Item>
-        <Menu.Item key="2">Em promoção</Menu.Item>
-        <Menu.Item key="3">Padrão</Menu.Item>
-    </Menu>
-);
 
 
 class ListingHeader extends Component {
@@ -22,11 +14,13 @@ class ListingHeader extends Component {
 
         this.state = {
             showDrawer: false,
-            pathname: this.props.location.pathname
+            pathname: this.props.location.pathname,
+            selectedKey: "3" //padrao
         }
 
         this.handleDrawer = this.handleDrawer.bind(this);
         this.closeDrawer = this.closeDrawer.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     
     componentDidUpdate() {
@@ -69,7 +63,20 @@ class ListingHeader extends Component {
         );
     }
 
+    handleChange(data) {
+        this.setState({ selectedKey: data.key });
+        this.props.onOrderChange(data);
+    }
+
     render() {
+        const OrderMenu = (
+            <Menu selectedKeys={[ this.state.selectedKey ]} onClick={this.handleChange}>
+                <Menu.Item key="0">Menor preço</Menu.Item>
+                <Menu.Item key="1">Maior preço</Menu.Item>
+                <Menu.Item key="2">Em promoção</Menu.Item>
+                <Menu.Item key="3">Padrão</Menu.Item>
+            </Menu>
+        );
         return (
             <div className="listing-header">
                 <Breadcrumb >

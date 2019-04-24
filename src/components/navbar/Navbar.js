@@ -38,10 +38,6 @@ class Navbar extends Component {
         }
     }
 
-    componentDidUpdate() {
-        console.log('will update');
-    }
-
     closeDrawer() {
         this.setState({ collapse: false });
     }

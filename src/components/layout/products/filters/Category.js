@@ -8,14 +8,28 @@ class Category extends Component {
 
         this.state = {
             categories: [],
-            value: undefined
+            value: undefined,
+            gender: undefined,
         }
 
         this.renderOptions = this.renderOptions.bind(this);
         this.handleCategory = this.handleCategory.bind(this);
     }
 
+    componentDidUpdate() {
+        if(this.state.gender !== this.props.match.params.gender) {
+            
+            this.getCategories();
+        }
+        
+    }
+
     componentDidMount() {
+        this.getCategories();
+    }
+
+    getCategories() {
+
         
         axios.get('/categories', {
             params: {
@@ -23,7 +37,7 @@ class Category extends Component {
             }
         }).then((result) => {
            
-            this.setState({ categories: result.data }, () => {
+            this.setState({ categories: result.data, gender: this.props.match.params.gender}, () => {
                 var index  = this.state.categories.findIndex((category) => {
                     return category.name.toLowerCase() === this.props.match.params.category;
                 })

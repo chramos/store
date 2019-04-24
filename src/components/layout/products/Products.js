@@ -23,6 +23,7 @@ class Products extends Component {
             max: 200,
             category: undefined,
             gender: "todos",
+            order: undefined
         }
 
         this.handlePagination = this.handlePagination.bind(this);
@@ -30,6 +31,8 @@ class Products extends Component {
         this.handlePrice = this.handlePrice.bind(this);
         this.handleGender = this.handleGender.bind(this);
         this.handeCategory = this.handeCategory.bind(this);
+        this.handleOrder = this.handleOrder.bind(this);
+        this.orderedData = this.orderedData.bind(this);
         
     }
     
@@ -51,7 +54,7 @@ class Products extends Component {
 
         axios.get('/products', {
             params: {
-                limit: 2,
+                limit: 4,
                 page: data.page || 1,
                 gender: this.state.gender,
                 category: this.state.category,
@@ -64,7 +67,7 @@ class Products extends Component {
             if(Object.keys(result.data).length === 0) {
                 result.data = [];
             }
-            console.log(result.data);
+ 
             this.setState({ data: result.data, isLoading: false, current: result.data.page });
         });
     }
@@ -83,6 +86,7 @@ class Products extends Component {
     handleGender(gender) {
         
         this.setState({ gender: gender }, () => {
+            this.props.match.params.gender = gender;
             let category = (this.state.category !== undefined) ?  '/' + this.state.category : '';
             let url = '/produtos/' + gender + category;
             window.history.pushState('', '', [url])
@@ -109,6 +113,35 @@ class Products extends Component {
 
     }
 
+    handleOrder(order) {
+        this.setState({ order: order.key });
+        
+    }
+
+    orderedData() {
+        var docs = this.state.data.docs.slice();
+
+        if (parseInt(this.state.order) === 0) {
+            return docs.sort((a, b) => {
+                return (a.price < b.price) ? -1 : (a.price > b.price) ? 1 : 0;
+            });
+        }
+        else if (parseInt(this.state.order) === 1) {
+            return docs.sort((a, b) => {
+                return (a.price < b.price) ? 1 : (a.price > b.price) ? -1 : 0;
+            });
+        }
+        else if (parseInt(this.state.order) === 2) {
+            return docs.sort((a, b) => {
+                return (a.offers && !b.offers) ? -1 : (!a.offers && b.offers) ? 1 : 0;
+            });
+        }
+        
+        else return this.state.data.docs;
+        
+        
+    }
+
     render() {
         
         return (
@@ -120,6 +153,7 @@ class Products extends Component {
                             location={this.props.location}
                             pathname={this.state.pathname}
                             match={this.props.match}
+                            onOrderChange={this.handleOrder}
                             onPriceChange={this.handlePrice}
                             onGenderChange={this.handleGender}
                             onCategoryChange={this.handeCategory} />
@@ -175,7 +209,7 @@ class Products extends Component {
                 );
             }
             return(
-                this.state.data.docs.map((product, index) => (
+                this.orderedData().map((product, index) => (
                     <ProductCard product={product} key={index} />
                 ))
             );
