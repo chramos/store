@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 function NavbarMenu(props) {
   return (
-		<Menu 
+		<Menu
+			onClick={props.onClick}
 			mode={props.mode}
 			style={props.style}
 		>

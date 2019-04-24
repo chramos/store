@@ -82,7 +82,7 @@ class Navbar extends Component {
                         placement="left"
                         visible={this.state.collapse}
                         onClose={this.closeDrawer}>
-                        <Menu mode="vertical" style={{width: 232}} />
+                        <Menu mode="vertical" onClick={this.closeDrawer} style={{width: 232}} />
                     </Drawer>
                 </div>
             </div>
