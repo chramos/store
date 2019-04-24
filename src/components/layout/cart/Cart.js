@@ -17,6 +17,7 @@ class Cart extends Component {
 
         this.handleTotal = this.handleTotal.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleQuantity = this.handleQuantity.bind(this);
     }
 
     componentDidMount() {
@@ -51,6 +52,23 @@ class Cart extends Component {
         });
     }
 
+    handleQuantity(index, value) {
+        if(value > 0) {
+            let cart = this.state.cart;
+
+            cart[index].quantity = value;
+
+            this.setState({ cart: cart }, () => {
+                this.handleTotal();
+
+                localStorage.removeItem('cart');
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+            });
+        }
+        
+    }
+
     render() {
         return (
             <div className="page">
@@ -63,7 +81,7 @@ class Cart extends Component {
                         <Row gutter={12} justify="center">
                             <Divider />
                             <Col xl={12} lg={12} md={12} sm={24} xs={24}>
-                                <CartList cart={this.state.cart} onRemove={this.handleRemove} />
+                                <CartList cart={this.state.cart} onRemove={this.handleRemove} onQuantityChange={this.handleQuantity} />
                             </Col>
                             <Col xl={12} lg={12} md={12}>
                                 <div className="cart-finish">

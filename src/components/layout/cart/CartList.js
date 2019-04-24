@@ -19,15 +19,15 @@ class CartList extends Component {
                             description={
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                                         <span>Tamanho: {item.size}</span>
-                                        <span className="text-muted">Produto em estoque</span>
+                                        <span className="text-muted">Quantidade em estoque: { item.stock }</span>
                                 </div>}
                         />
 
                         <div className="cart-list-action">
                             <div>
-                                <InputNumber min={1} max={item.stock} defaultValue={item.quantity} size="large" onChange={() => {}} />
+                                <InputNumber min={1} max={item.stock} defaultValue={item.quantity} size="large" onChange={(quantity) => this.props.onQuantityChange(index, quantity)  } />
                             </div>
-                            <p style={{ marginLeft: 12, fontSize: 22 }}><ProductPrice product={item} /></p>
+                            <span style={{ fontSize: 22 }}><ProductPrice product={item} /></span>
                             <Popconfirm title="Deseja remover este item do carrinho?" onConfirm={() => this.props.onRemove(index)} onCancel={() => {}} okText="Remover" cancelText="Cancelar">
                                 <Button className="btn-clean" shape="circle" icon="close" />
                             </Popconfirm>
