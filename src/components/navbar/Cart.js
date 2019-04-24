@@ -38,8 +38,10 @@ class Cart extends Component {
     render() {
         this.props.store.subscribe(() => {
             const cart = (JSON.parse(localStorage.getItem('cart')));
-
-			this.setState({ cart: cart })
+            
+			this.setState({ cart: cart }, () => {
+                this.handleTotal();
+            });
         });
         
         if(this.props.count <= 0) {
