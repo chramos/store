@@ -91,6 +91,8 @@ class ProductDetails extends Component {
 
         localStorage.setItem('cart', JSON.stringify(cart));
 
+        // this.props.onCartChange(Object.keys(cart).length);
+
         return message.success('Produto adicionado ao seu carrinho :)');
         
     }

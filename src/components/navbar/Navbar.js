@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Drawer, Popover } from 'antd';
+import { Button, Drawer, Popover, Badge, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 
 import './Navbar.css';
@@ -13,11 +13,15 @@ class Navbar extends Component {
         super(props);
 
         this.state = {
-            collapse: false
+            collapse: false,
+            count: 0
         }
 
         this.showDrawer = this.showDrawer.bind(this);
         this.closeDrawer = this.closeDrawer.bind(this);
+    }
+
+    componentDidMount() {
     }
 
     closeDrawer() {
@@ -40,9 +44,17 @@ class Navbar extends Component {
                             <span>Virtual</span>
                         </Link>
                     </div>
+                    
                     <Popover placement="bottomRight" trigger="click" content={<Cart />} >
-                        <Button icon="shopping-cart" shape="circle" className="btn-clean" style={{ margin: '0 20px' }} />
+                        
+                        <Button size="large" shape="circle" className="btn-clean">
+                            <Badge count={this.state.count} showZero={false}>
+                                <Icon style={{ fontSize: '22px' }} type="shopping-cart" />
+                            </Badge>
+                        </Button>
+                        
                     </Popover>
+                    
 
                     <section className="navbar-menu desktop">
                         <Menu mode="horizontal" />
