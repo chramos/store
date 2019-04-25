@@ -20,7 +20,8 @@ class QueryResults extends Component {
         }
     }
     render() {
-        if(Object.keys(this.props.data).length === 0) {
+
+        if(this.props.data === undefined || !Array.isArray(this.props.data.docs) || Array(this.props.data.docs).length ) {
             return (<span className="quantity-results"></span>);
         }
         return (
