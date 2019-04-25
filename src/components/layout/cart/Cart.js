@@ -90,6 +90,7 @@ class Cart extends Component {
                                 <CartList cart={this.state.cart} onRemove={this.handleRemove} onQuantityChange={this.handleQuantity} />
                             </Col>
                             <Col xl={12} lg={12} md={12}>
+                                
                                 <div className="cart-finish">
                                     <div className="flex">
                                         <h2 className="grow"><strong>TOTAL</strong></h2>
