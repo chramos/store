@@ -20,13 +20,15 @@ class QueryResults extends Component {
         }
     }
     render() {
-
-        if(this.props.data === undefined || !Array.isArray(this.props.data.docs) || Array(this.props.data.docs).length ) {
-            return (<span className="quantity-results"></span>);
+        if (Array.isArray(this.props.data.docs)) {
+            if (this.props.data.docs.length > 0) {
+                return (
+                    <span className="quantity-results">({this.to()} - {this.from()} de {this.props.data.total} resultados)</span>
+                );
+            }
         }
-        return (
-            <span className="quantity-results">({this.to()} - {this.from()} de {this.props.data.total} resultados)</span>
-        );
+
+        return(<span className="quantity-results"></span>);
     }
 }
 
