@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import Navbar from './navbar/Navbar';
@@ -14,6 +14,11 @@ class App extends Component {
 		return (
 			<div>
 				<BrowserRouter>
+				<Route render={({location}) => {
+					if(location.pathname === "/checkout") {
+						return <Redirect to="/entrar" />
+					}
+				}} />
 					<Navbar store={this.props.store} />
 					<Route render={({location}) => (
 						<TransitionGroup>

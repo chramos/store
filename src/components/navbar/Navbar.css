@@ -14,17 +14,19 @@
     transition: all .5s;
 }
 
-.navbar-brand a {
+.navbar-brand a, .logo {
     font-size: 1.5rem;
     color: rgb(48, 48, 48);
     text-transform: uppercase;
 }
 
-.navbar-brand a span:nth-child(1) {
+.navbar-brand a span:nth-child(1),
+.logo span:nth-child(1) {
     letter-spacing: 3px;
     color: rgb(189, 189, 189);
 }
-.navbar-brand a span:nth-child(2) {
+.navbar-brand a span:nth-child(2),
+.logo span:nth-child(2) {
     letter-spacing: 3px;
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Icon, Divider, Row, Col, Button } from 'antd';
+import { Breadcrumb, Icon, Divider, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 
 import './Cart.css';
@@ -98,7 +98,8 @@ class Cart extends Component {
                                             <span className="text-muted" >ou 12x de <span className="product-price">{ (this.state.total / 12).toFixed(2).replace('.', ',') }</span> </span>
                                         </div>
                                     </div>
-                                    <Button type="default" size="large" block><strong>FECHAR PEDIDO</strong></Button>
+                                    <Link to="/checkout" className="ant-btn ant-btn-default ant-btn-lg ant-btn-block"><strong>FINALIZAR PEDIDO</strong></Link>
+                                    {/* <Button type="default" size="large" block><strong>FECHAR PEDIDO</strong></Button> */}
                                 </div>
                             </Col>
                         </Row>
