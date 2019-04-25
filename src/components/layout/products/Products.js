@@ -10,6 +10,8 @@ import Filters from './filters/Filters';
 import ProductCard from './ProductCard';
 import ProductPagination from './ProductPagination';
 
+const querySearch = require("stringquery");
+
 
 class Products extends Component {
     constructor(props) {
@@ -37,6 +39,9 @@ class Products extends Component {
     }
     
     componentDidMount() {
+
+        const search = querySearch(this.props.location.search);
+       
         
         if (this.props.match.params.gender !== undefined) {
             this.setState({ gender: this.props.match.params.gender })
@@ -46,7 +51,7 @@ class Products extends Component {
         }
 
         setTimeout(() => {
-            this.getProducts();
+            this.getProducts({ page: search.page !== undefined ? search.page : 1 });
         }, 1500)
     }
 
@@ -54,7 +59,7 @@ class Products extends Component {
 
         axios.get('/products', {
             params: {
-                limit: 4,
+                limit: 8,
                 page: data.page || 1,
                 gender: this.state.gender,
                 category: this.state.category,
@@ -73,8 +78,17 @@ class Products extends Component {
     }
 
     handlePagination(page) {
-        this.setState({ isLoading: true });
-        this.getProducts({page: page});
+        this.setState({ isLoading: true }, () => {
+
+            
+            let gender = this.props.match.params.gender || '';
+            let category = (this.state.category !== undefined) ?  '/' + this.state.category : '';
+            let url = '/produtos/' + gender + category + '?page=' + page;
+            window.history.pushState('', '', [url]);
+            
+            
+            this.getProducts({page: page});
+        });
     }
 
     handlePrice(value) {

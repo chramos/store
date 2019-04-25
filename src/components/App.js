@@ -14,11 +14,11 @@ class App extends Component {
 		return (
 			<div>
 				<BrowserRouter>
-				<Route render={({location}) => {
-					if(location.pathname === "/checkout") {
-						return <Redirect to="/entrar" />
-					}
-				}} />
+					<Route render={({location}) => {
+						if(location.pathname === "/checkout") {
+							return <Redirect to="/entrar" />
+						}
+					}} />
 					<Navbar store={this.props.store} />
 					<Route render={({location}) => (
 						<TransitionGroup>

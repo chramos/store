@@ -12,7 +12,7 @@ function ProductCard(props) {
 
     return(
         <Link to={url}>
-            <Col className="gutter-row product" lg={6} md={8} sm={24} xs={24}>               
+            <Col className="gutter-row product" xl={6} lg={6} md={6} sm={12} xs={24}>               
                 <Card
                     // onClick={() => {console.log(props.product)}}
                     hoverable
